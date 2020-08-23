@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">sbu</string>
+
+    <!--Splash Activitty-->
+    <string name="splash_title">SSANGBANGUL</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="title_first">Ranking</string>
+    <string name="title_second">History</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
