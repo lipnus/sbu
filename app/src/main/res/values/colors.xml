@@ -3,4 +3,23 @@
     <color name="colorPrimary">#FA76A3</color>
     <color name="colorPrimaryDark">#F44336</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="color_main_background">#F6F6F6</color>
+
+    <color name="default_text">#808080</color>
+    <color name="black">#000000</color>
+    <color name="black_inactive">#BEBEBE</color>
+
+    <color name="muk_black">#333333</color>
+    <color name="muk_black_inactive">#A0A0A0</color>
+    <color name="skct_red">#F05756</color>
+    <color name="skct_red_inactive">#EE9494</color>
+    <color name="gray_line">#D1D1D1</color>
+
+    <color name="skct_green">#4A9F74</color>
+    <color name="skct_green_inactive">#87D9B0</color>
+
+    <color name="blue_term_title">#2D5AF0</color>
+
+
 </resources>

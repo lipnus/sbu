@@ -3,7 +3,7 @@
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
-                                             android:layout_height="120dp" android:id="@+id/item_setting_constraint">
+                                             android:layout_height="80dp" android:id="@+id/item_setting_constraint">
 
     <android.support.constraint.ConstraintLayout
             android:background="@drawable/question_box"
@@ -15,32 +15,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="35dp" android:layout_marginEnd="35dp"
-            android:layout_marginTop="8dp" android:layout_marginBottom="32dp">
+            android:layout_marginTop="8dp" android:layout_marginBottom="8dp">
         <TextView
                 android:text="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/rank_tv" android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/rank_tv" android:textStyle="normal"
                 android:textSize="20dp"/>
         <TextView
                 android:text="1000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent" android:id="@+id/textView2" android:textSize="20dp"/>
+                app:layout_constraintEnd_toEndOf="parent" android:id="@+id/money_tv" android:textSize="20dp"/>
         <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp" app:srcCompat="@mipmap/ic_launcher_round"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/imageView"
+                app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/profile_iv"
                 app:layout_constraintStart_toEndOf="@+id/rank_tv" android:layout_marginStart="16dp"/>
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" app:srcCompat="@drawable/ic_money"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/imageView2"
-                app:layout_constraintEnd_toStartOf="@+id/textView2" android:layout_marginEnd="8dp"/>
+                app:layout_constraintEnd_toStartOf="@+id/money_tv" android:layout_marginEnd="8dp"/>
+        <TextView
+                android:text="프로"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/name_tv" app:layout_constraintStart_toEndOf="@+id/profile_iv"
+                android:layout_marginStart="8dp" android:textSize="18dp"/>
     </android.support.constraint.ConstraintLayout>
 
 
