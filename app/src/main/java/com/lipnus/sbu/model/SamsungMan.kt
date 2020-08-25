@@ -4,5 +4,6 @@ import java.io.Serializable
 
 data class SamsungMan(
     val name : String,
-    val sum : Int
+    val money : Int,
+    val path: String
 ) : Serializable
