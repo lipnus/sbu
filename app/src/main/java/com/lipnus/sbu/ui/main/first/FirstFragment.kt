@@ -19,7 +19,7 @@ class FirstFragment : Fragment() {
 
     private var param1: String? = null
 
-    private lateinit var pussiesAdapter : PussiesRecycleingViewAdapter
+    private lateinit var pussyAdapter : PussyRecycleingViewAdapter
     private lateinit var recyclerView : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,22 +34,16 @@ class FirstFragment : Fragment() {
         val view = inflater.inflate(com.lipnus.sbu.R.layout.fragment_first, container, false)
         initRecyclerView(view)
 
-
         updateRecyclerView(pussies)
         return view
     }
 
-
-
-
-
-
     private fun initRecyclerView(view: View){
 
-        recyclerView = view.findViewById(com.lipnus.sbu.R.id.recyclerview)
+        recyclerView = view.findViewById(com.lipnus.sbu.R.id.recyclerview2)
 
-        pussiesAdapter = PussiesRecycleingViewAdapter(context).apply {
-            setItemClickListener(object : PussiesRecycleingViewAdapter.ItemClickListener{
+        pussyAdapter = PussyRecycleingViewAdapter(context).apply {
+            setItemClickListener(object : PussyRecycleingViewAdapter.ItemClickListener{
 
                 override fun onClick(money: Int) {
                     TODO("각 인물 눌렀을 때")
@@ -58,7 +52,7 @@ class FirstFragment : Fragment() {
         }
 
         recyclerView.run{
-            adapter = pussiesAdapter
+            adapter = pussyAdapter
             layoutManager = LinearLayoutManager(context)
         }
     }
@@ -67,10 +61,10 @@ class FirstFragment : Fragment() {
     fun updateRecyclerView(items: List<SamsungMan>){
 
         for(item in items){
-            pussiesAdapter.addItem( item )
+            pussyAdapter.addItem( item )
         }
 
-        pussiesAdapter.notifyDataSetChanged()
+        pussyAdapter.notifyDataSetChanged()
     }
 
     companion object {

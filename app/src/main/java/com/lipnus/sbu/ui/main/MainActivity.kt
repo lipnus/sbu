@@ -46,7 +46,6 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initLayout(){
-
         navigation.setOnNavigationItemSelectedListener {
 
             when (it.itemId) {
@@ -65,8 +64,8 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initFragment() {
-        firstFragment = FirstFragment.newInstance("Ranking")
-        secondFragment = SecondFragment.newInstance("History")
+        firstFragment = FirstFragment.newInstance("프레그먼트로 변수넘길거면 여기서 넘기면 됨")
+        secondFragment = SecondFragment.newInstance()
 
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, firstFragment)
@@ -76,7 +75,6 @@ class MainActivity : BaseActivity() {
 
 
     private fun connect(){
-
         val queue = Volley.newRequestQueue(this)
         val url = SHEET_URL
 
@@ -86,7 +84,6 @@ class MainActivity : BaseActivity() {
                 dismissLoadingDialog()
                 makePussiesData(removeDollar(response))
                 initFragment()
-
             },
             Response.ErrorListener {
                 Log.d("SSS", "에러: $it")
@@ -97,7 +94,7 @@ class MainActivity : BaseActivity() {
     }
 
 
-    //구글시트에서 변수명에 딸라를 붙여놨어
+    //구글시트 json 변수명에 딸라를 붙여놔서 지워준다
     private fun removeDollar(text: String): String{
         return text.replace("$", "")
     }
@@ -106,14 +103,14 @@ class MainActivity : BaseActivity() {
 
         var gson = Gson()
         val rawSheet = gson.fromJson(rawData, RawSheet::class.java)
-
         val size = rawSheet.feed.entry.size
+
         pussies = ArrayList(size)
 
         for(pro in rawSheet.feed.entry){
             val name = pro.gsxname.t
             val money = pro.gsxmoney.t.toInt()
-            val path = IMG_SERVER_URL + name + ".jpg"
+            val path = IMG_SERVER_URL + name + ".jpg" //이미지 서버가 없어서 안나옴
 
             val pussy = SamsungMan(name, money, path)
             pussies.add(pussy)

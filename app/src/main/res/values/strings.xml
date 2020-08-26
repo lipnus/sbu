@@ -11,7 +11,9 @@
     <!--Main Activity-->
     <string name="title_main_first">Pussies</string>
     <string name="title_main_second">History</string>
-    <string name="welcome_comment">하앙</string>
+    <string name="welcome_comment">하~앙</string>
 
+    <!--SecondFragment-->
+    <string name="histroy_post">을 헌납했다.</string>
 
 </resources>

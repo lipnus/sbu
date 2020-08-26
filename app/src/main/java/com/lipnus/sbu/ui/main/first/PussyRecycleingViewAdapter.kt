@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.lipnus.sbu.R
 import com.lipnus.sbu.model.SamsungMan
 
-class PussiesRecycleingViewAdapter(val context: Context?): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PussyRecycleingViewAdapter(val context: Context?): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     //데이터를 저장할 아이템리스트
     private val items = ArrayList<SamsungMan>()
@@ -67,7 +67,6 @@ class PussiesRecycleingViewAdapter(val context: Context?): RecyclerView.Adapter<
         items.removeAt(position)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, items.size)
-
     }
 
     //각각의 아이템의 데이터를 바인딩 시켜준다
@@ -78,19 +77,16 @@ class PussiesRecycleingViewAdapter(val context: Context?): RecyclerView.Adapter<
             rankTv.text = (pos+1).toString()
             nameTv.text = items[pos].name
             moneyTv.text = items[pos].money.toString()
-
         }
 
         Glide
             .with(view.itemView.context)
-            .load("https://drive.google.com/file/d/16HwQaOgwD_NryJAuDQAjlX2Ims8cL-ki/view?usp=sharing")
+            .load(items[pos].path)
             .placeholder(R.drawable.ic_coffee)
             .centerCrop()
             .into(view.profileIv)
 
         Log.d("SSS", "$context")
         Log.d("SSS", items[pos].path)
-
-
     }
 }
