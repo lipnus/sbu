@@ -1,15 +1,18 @@
 package com.lipnus.sbu.ui.main.first
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.lipnus.sbu.R
 import com.lipnus.sbu.model.SamsungMan
 
-class PussiesRecycleingViewAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PussiesRecycleingViewAdapter(val context: Context?): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     //데이터를 저장할 아이템리스트
     private val items = ArrayList<SamsungMan>()
@@ -77,5 +80,17 @@ class PussiesRecycleingViewAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder
             moneyTv.text = items[pos].money.toString()
 
         }
+
+        Glide
+            .with(view.itemView.context)
+            .load("https://drive.google.com/file/d/16HwQaOgwD_NryJAuDQAjlX2Ims8cL-ki/view?usp=sharing")
+            .placeholder(R.drawable.ic_coffee)
+            .centerCrop()
+            .into(view.profileIv)
+
+        Log.d("SSS", "$context")
+        Log.d("SSS", items[pos].path)
+
+
     }
 }

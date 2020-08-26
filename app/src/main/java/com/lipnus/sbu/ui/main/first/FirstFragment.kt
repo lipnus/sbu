@@ -1,21 +1,15 @@
 package com.lipnus.sbu.ui.main.first
 
-import android.app.DownloadManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.android.volley.Request
-import com.android.volley.Request.Method.GET
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 
 import com.lipnus.sbu.model.SamsungMan
+import com.lipnus.sbu.util.pussies
 
 
 private const val ARG_PARAM1 = "param1"
@@ -41,14 +35,7 @@ class FirstFragment : Fragment() {
         initRecyclerView(view)
 
 
-
-        val peoples = ArrayList<SamsungMan>()
-
-        peoples.add(SamsungMan("황선필", 12200, ""))
-        peoples.add(SamsungMan("조익환", 5400, ""))
-        peoples.add(SamsungMan("박동익", 2100, ""))
-
-        updateRecyclerView(peoples)
+        updateRecyclerView(pussies)
         return view
     }
 
@@ -61,7 +48,7 @@ class FirstFragment : Fragment() {
 
         recyclerView = view.findViewById(com.lipnus.sbu.R.id.recyclerview)
 
-        pussiesAdapter = PussiesRecycleingViewAdapter().apply {
+        pussiesAdapter = PussiesRecycleingViewAdapter(context).apply {
             setItemClickListener(object : PussiesRecycleingViewAdapter.ItemClickListener{
 
                 override fun onClick(money: Int) {
@@ -85,8 +72,6 @@ class FirstFragment : Fragment() {
 
         pussiesAdapter.notifyDataSetChanged()
     }
-
-
 
     companion object {
         @JvmStatic

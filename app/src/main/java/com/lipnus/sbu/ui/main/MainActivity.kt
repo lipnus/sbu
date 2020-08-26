@@ -13,14 +13,18 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.lipnus.sbu.R
+import com.lipnus.sbu.base.BaseActivity
 import com.lipnus.sbu.model.SamsungMan
 import com.lipnus.sbu.model.rawsheet.RawSheet
 import com.lipnus.sbu.ui.main.first.FirstFragment
 import com.lipnus.sbu.ui.main.second.SecondFragment
+import com.lipnus.sbu.util.IMG_SERVER_URL
+import com.lipnus.sbu.util.LoadingDialog
 import com.lipnus.sbu.util.SHEET_URL
+import com.lipnus.sbu.util.pussies
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var firstFragment: FirstFragment
     private lateinit var secondFragment: SecondFragment
@@ -30,14 +34,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        connect()
-
         showWelcomeToast()
-        initFragment()
+        showLoadingDialog()
+        connect()
         initLayout()
-
-
     }
+
 
     private fun showWelcomeToast(){
         Toast.makeText(this, getString(R.string.welcome_comment), Toast.LENGTH_SHORT).show()
@@ -80,11 +82,15 @@ class MainActivity : AppCompatActivity() {
 
         val stringRequest = StringRequest(
             Request.Method.GET, url, Response.Listener<String> { response ->
-                val rawData = removeDollar(response)
-                makePussiesData(rawData)
+
+                dismissLoadingDialog()
+                makePussiesData(removeDollar(response))
+                initFragment()
+
             },
             Response.ErrorListener {
                 Log.d("SSS", "에러: $it")
+                connect()
             })
 
         queue.add(stringRequest)
@@ -101,11 +107,19 @@ class MainActivity : AppCompatActivity() {
         var gson = Gson()
         val rawSheet = gson.fromJson(rawData, RawSheet::class.java)
 
-        var pussies = List<SamsungMan>
+        val size = rawSheet.feed.entry.size
+        pussies = ArrayList(size)
 
-        Log.d("SSS", "이름: ${rawSheet.feed.entry[0].gsxname.t}")
-        Log.d("SSS", "이름: ${rawSheet.feed.entry[0].gsxmoney.t}")
+        for(pro in rawSheet.feed.entry){
+            val name = pro.gsxname.t
+            val money = pro.gsxmoney.t.toInt()
+            val path = IMG_SERVER_URL + name + ".jpg"
 
+            val pussy = SamsungMan(name, money, path)
+            pussies.add(pussy)
+        }
 
+        pussies.sortBy { pussies -> pussies.money*(-1) }
+        Log.d("SSS", "$pussies")
     }
 }

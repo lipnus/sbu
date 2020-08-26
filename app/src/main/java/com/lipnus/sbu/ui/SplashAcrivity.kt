@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_splash_acrivity.*
 
 class SplashAcrivity : BaseActivity() {
 
-    private val DELAY_TIME:Long = 1500
+    private val DELAY_TIME:Long = 900
     private val mHandler by lazy { Handler() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,6 @@ class SplashAcrivity : BaseActivity() {
             .duration(800)
             .repeat(0)
             .playOn(title_sub_tv)
-
     }
 
     fun delayTime(delayedFun: ()->Unit, time: Long) {
@@ -49,7 +48,6 @@ class SplashAcrivity : BaseActivity() {
         Intent(this, MainActivity::class.java).also {
             startActivity(it)
         }
-
         finish()
     }
 }
