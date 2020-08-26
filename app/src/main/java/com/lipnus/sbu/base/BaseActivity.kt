@@ -1,6 +1,6 @@
 package com.lipnus.sbu.base
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.lipnus.sbu.R
 import com.lipnus.sbu.util.LoadingDialog

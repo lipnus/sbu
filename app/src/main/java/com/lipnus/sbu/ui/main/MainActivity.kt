@@ -2,8 +2,8 @@ package com.lipnus.sbu.ui.main
 
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
@@ -37,7 +37,6 @@ class MainActivity : BaseActivity() {
         connect()
         initLayout()
     }
-
 
     private fun showWelcomeToast(){
         Toast.makeText(this, getString(R.string.welcome_comment), Toast.LENGTH_SHORT).show()
@@ -149,6 +148,7 @@ class MainActivity : BaseActivity() {
             sortBy { histories -> histories.date }
             reverse()
         }
-
     }
+
+
 }

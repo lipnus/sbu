@@ -3,7 +3,7 @@ package com.lipnus.sbu.util
 import android.app.Activity
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.support.v7.app.AppCompatDialog
+import androidx.appcompat.app.AppCompatDialog
 import com.lipnus.sbu.R
 
 object LoadingDialog{
