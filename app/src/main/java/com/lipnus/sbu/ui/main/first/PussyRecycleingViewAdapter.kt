@@ -85,8 +85,5 @@ class PussyRecycleingViewAdapter(val context: Context?): RecyclerView.Adapter<Re
             .placeholder(R.drawable.ic_coffee)
             .centerCrop()
             .into(view.profileIv)
-
-        Log.d("SSS", "$context")
-        Log.d("SSS", items[pos].path)
     }
 }

@@ -14,14 +14,12 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.lipnus.sbu.R
 import com.lipnus.sbu.base.BaseActivity
+import com.lipnus.sbu.model.History
 import com.lipnus.sbu.model.SamsungMan
 import com.lipnus.sbu.model.rawsheet.RawSheet
 import com.lipnus.sbu.ui.main.first.FirstFragment
 import com.lipnus.sbu.ui.main.second.SecondFragment
-import com.lipnus.sbu.util.IMG_SERVER_URL
-import com.lipnus.sbu.util.LoadingDialog
-import com.lipnus.sbu.util.SHEET_URL
-import com.lipnus.sbu.util.pussies
+import com.lipnus.sbu.util.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -82,7 +80,11 @@ class MainActivity : BaseActivity() {
             Request.Method.GET, url, Response.Listener<String> { response ->
 
                 dismissLoadingDialog()
-                makePussiesData(removeDollar(response))
+
+                val jsonStr = removeDollar(response)
+                makePussiesData(jsonStr)
+                makeHistoryData(jsonStr)
+
                 initFragment()
             },
             Response.ErrorListener {
@@ -99,18 +101,19 @@ class MainActivity : BaseActivity() {
         return text.replace("$", "")
     }
 
-    private fun makePussiesData(rawData: String){
+    private fun makePussiesData(jsonStr: String){
 
         var gson = Gson()
-        val rawSheet = gson.fromJson(rawData, RawSheet::class.java)
+        val rawSheet = gson.fromJson(jsonStr, RawSheet::class.java)
         val size = rawSheet.feed.entry.size
 
+        Log.d("SSS", "$rawSheet")
         pussies = ArrayList(size)
 
         for(pro in rawSheet.feed.entry){
             val name = pro.gsxname.t
             val money = pro.gsxmoney.t.toInt()
-            val path = IMG_SERVER_URL + name + ".jpg" //이미지 서버가 없어서 안나옴
+            val path = IMG_SERVER_URL + name + ".jpg"
 
             val pussy = SamsungMan(name, money, path)
             pussies.add(pussy)
@@ -118,5 +121,34 @@ class MainActivity : BaseActivity() {
 
         pussies.sortBy { pussies -> pussies.money*(-1) }
         Log.d("SSS", "$pussies")
+    }
+
+    private fun makeHistoryData(jsonStr: String){
+
+        var gson = Gson()
+        val rawSheet = gson.fromJson(jsonStr, RawSheet::class.java)
+        histories = ArrayList()
+
+        for(pro in rawSheet.feed.entry){
+
+            val content = pro.content.t
+            val days = content.split(",")
+
+            for((i, day) in days.withIndex()){
+                if(i==0) continue
+
+                val day = day.split(":")
+                val money = day[1].replace(" ", "")
+                if(money.equals("0") || money.equals("")) continue
+
+                val date = day[0].replace("a", "")
+                histories.add(History(pro.gsxname.t, money, date))
+            }
+        }
+        histories.run{
+            sortBy { histories -> histories.date }
+            reverse()
+        }
+
     }
 }

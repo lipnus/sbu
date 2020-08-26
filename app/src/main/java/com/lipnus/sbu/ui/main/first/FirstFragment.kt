@@ -57,13 +57,10 @@ class FirstFragment : Fragment() {
         }
     }
 
-
     fun updateRecyclerView(items: List<SamsungMan>){
-
         for(item in items){
             pussyAdapter.addItem( item )
         }
-
         pussyAdapter.notifyDataSetChanged()
     }
 
