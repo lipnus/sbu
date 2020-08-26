@@ -81,9 +81,14 @@ class PussyRecycleingViewAdapter(val context: Context?): RecyclerView.Adapter<Re
 
         Glide
             .with(view.itemView.context)
-            .load(items[pos].path)
-            .placeholder(R.drawable.ic_coffee)
-            .centerCrop()
+            .load(R.drawable.ic_girl)
             .into(view.profileIv)
+
+        if(pos==0){
+            Glide
+                .with(view.itemView.context)
+                .load(R.drawable.ic_pussy)
+                .into(view.profileIv)
+        }
     }
 }
